@@ -192,6 +192,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="New Invoice"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="New Invoice Header"/>
+      </AccessibilityProperties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="createInvoiceBtn.addActionListener(controller);&#xd;&#xa;"/>
       </AuxValues>

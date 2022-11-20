@@ -9,7 +9,6 @@ import Model.InvoiceHeader;
 import Model.InvoiceHeaderTableModel;
 import Model.InvoiceItem;
 import Model.InvoiceItemTableModel;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -213,6 +212,8 @@ public class InvoiceForm extends javax.swing.JFrame  {
                     .addComponent(deleteItemBtn))
                 .addContainerGap())
         );
+
+        createInvoiceBtn.getAccessibleContext().setAccessibleName("New Invoice Header");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

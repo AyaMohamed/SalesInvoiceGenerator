@@ -9,6 +9,7 @@ import Model.InvoiceHeaderTableModel;
 import Model.InvoiceItem;
 import Model.InvoiceItemTableModel;
 import View.InvoiceForm;
+import View.NewInvoicePage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -16,6 +17,9 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,9 +34,10 @@ import javax.swing.event.ListSelectionListener;
 *
 * @author Aya.Mohamed
 */
-public class InvoiceActionListener implements ActionListener, ListSelectionListener {
+public class InvoiceActionListener implements ActionListener, ListSelectionListener  {
 
-private InvoiceForm form;
+private static InvoiceForm form;
+private static NewInvoicePage newInvoicePage;
 
 public InvoiceActionListener(InvoiceForm form)
 {
@@ -48,6 +53,16 @@ public void actionPerformed(ActionEvent e) {
         case "Load File":
             System.out.println("Load File Action");
             loadFile("", "");
+            break;
+            
+        case "New Invoice":
+            System.out.println(e.getActionCommand().toString());
+            addNewInvoiceHeader();
+            break;
+            
+        case "Ok":
+            System.out.println(e.getActionCommand().toString());
+            okInvoiceHeader();
             break;
 
 
@@ -182,8 +197,75 @@ public void valueChanged(ListSelectionEvent e)
     }
 }
 
+public NewInvoicePage addNewInvoiceHeader()
+{
+    //form.getInvoiceHeaderTable().add
+   newInvoicePage=new NewInvoicePage(form);
+   newInvoicePage.setVisible(true);
+   return new NewInvoicePage(form);
 }
 
+public void okInvoiceHeader()
+{
+    //1. get invoice num, customer name and date from (newInvoicePage) object
+    //2. save it in an arraylist
+    //3. close the form
+    //4. add arraylist into invoiceHeaderTableModel
+    //5. invoiceHeaderTableModel.fireTableDateChanged();
+    
+    int num;
+    num=Integer.parseInt(newInvoicePage.getInvoiceNumTxt().getText());
+    String customerName=newInvoicePage.getCustomerNameTxt().getText();
+    String date=newInvoicePage.getDateTxt().getText();
+        
+    if(tryParseInteger(newInvoicePage.getInvoiceNumTxt().getText()))
+    {
+        if(num<1)
+        {
+            JOptionPane.showMessageDialog(newInvoicePage, "Please Enter a valid positive number");
+        }
+        InvoiceHeader currentInvoiceHeader=new InvoiceHeader(num, customerName, date);
+        ArrayList<InvoiceHeader> invoiceHeaders= form.getInvoiceHeader();
+        invoiceHeaders.add(currentInvoiceHeader);
+        newInvoicePage.dispose();
+        form.getInvoiceHeaderTable().setModel(new InvoiceHeaderTableModel(form.getInvoiceHeader()));
+        form.getHeaderTableModel().fireTableDataChanged();
+    }
+    else
+    {
+        newInvoicePage.getInvoiceNumTxt().setText("");
+        newInvoicePage.getCustomerNameTxt().setText("");
+        newInvoicePage.getDateTxt().setText("");
+        
+    }
+    
+        
+    
+}
+
+public boolean tryParseInteger(String num)
+{
+    boolean result;
+    
+    try
+    {
+        int integerNumber=Integer.parseInt(num);
+        result=true;
+    }
+    catch(NumberFormatException ex)
+    {
+        JOptionPane.showMessageDialog(newInvoicePage, "Please Enter a valid positive number",
+           "Invalid Number!!", JOptionPane.ERROR_MESSAGE);
+        result=false;
+   
+    }
+    return result;
+}
+
+
+   
+
+}
 
 
 

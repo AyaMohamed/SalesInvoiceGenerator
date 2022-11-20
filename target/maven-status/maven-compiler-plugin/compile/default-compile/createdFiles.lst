@@ -1,6 +1,8 @@
 Model\InvoiceHeaderTableModel.class
+Model\InvoiceItemTableModel.class
 View\InvoiceForm.class
 Controller\InvoiceActionListener.class
 Model\InvoiceItem.class
 View\InvoiceForm$1.class
+View\NewInvoicePage.class
 Model\InvoiceHeader.class
