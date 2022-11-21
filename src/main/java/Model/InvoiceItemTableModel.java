@@ -25,6 +25,10 @@ public class InvoiceItemTableModel extends AbstractTableModel {
     @Override
     public int getRowCount()
     {
+        if(invoiceItems==null)
+        {
+            return 0;
+        }
         return invoiceItems.size();
     }
     

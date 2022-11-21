@@ -24,9 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -60,10 +63,17 @@ public void actionPerformed(ActionEvent e) {
             addNewInvoiceHeader();
             break;
             
+        case "Delete Invoice":
+            System.out.println(e.getActionCommand());
+            deleteInvoiceHeader();
+            break;
+            
         case "Ok":
             System.out.println(e.getActionCommand().toString());
             okInvoiceHeader();
             break;
+            
+            
 
 
     }
@@ -140,8 +150,8 @@ public void loadFile(String invoiceHeaderPath, String invoiceItemPath)
 
         form.getInvoiceHeaderTable().setModel(new InvoiceHeaderTableModel(form.getInvoiceHeader()));
         //form.getInvoiceItemTabelModel().setModel(new InvoiceItemTableModel(form.getInvoiceItem()));
-        form.getHeaderTableModel().fireTableDataChanged();
-        form.setInvoiceHeaderTableModel(form.getHeaderTableModel());
+        form.getInvoiceHeaderTableModel().fireTableDataChanged();
+        form.setInvoiceHeaderTableModel(form.getInvoiceHeaderTableModel());
 
     }
 
@@ -171,12 +181,9 @@ public void loadFile(String invoiceHeaderPath, String invoiceItemPath)
 public void valueChanged(ListSelectionEvent e)
 {
     int selected=form.getInvoiceHeaderTable().getSelectedRow();
-    if(selected==-1)
-    {
-        JOptionPane.showMessageDialog(form, "No rows selected");
-    }
-    else
-    {
+    
+        if(selected!=-1)
+        {
         InvoiceHeader invoiceHeader=form.getInvoiceHeader().get(selected);
         int invoiceNum=invoiceHeader.getNum();
         String date=invoiceHeader.getDate();
@@ -192,9 +199,9 @@ public void valueChanged(ListSelectionEvent e)
         InvoiceItemTableModel invoiceItemTableModel=new InvoiceItemTableModel(invoiceItems);
         form.getInvoiceItemTable().setModel(invoiceItemTableModel);
         invoiceItemTableModel.fireTableDataChanged();
+}
         
-        
-    }
+    
 }
 
 public NewInvoicePage addNewInvoiceHeader()
@@ -202,6 +209,12 @@ public NewInvoicePage addNewInvoiceHeader()
     //form.getInvoiceHeaderTable().add
    newInvoicePage=new NewInvoicePage(form);
    newInvoicePage.setVisible(true);
+   ArrayList<InvoiceHeader> invoiceHeaders= form.getInvoiceHeader();
+    int num;
+    num= invoiceHeaders.get(invoiceHeaders.size()-1).getNum()+1;
+    
+    newInvoicePage.getInvoiceNumTxt().setText(String.valueOf(num));
+   
    return new NewInvoicePage(form);
 }
 
@@ -212,36 +225,26 @@ public void okInvoiceHeader()
     //3. close the form
     //4. add arraylist into invoiceHeaderTableModel
     //5. invoiceHeaderTableModel.fireTableDateChanged();
-    
-    int num;
-    num=Integer.parseInt(newInvoicePage.getInvoiceNumTxt().getText());
+    int num=Integer.parseInt(newInvoicePage.getInvoiceNumTxt().getText());
     String customerName=newInvoicePage.getCustomerNameTxt().getText();
     String date=newInvoicePage.getDateTxt().getText();
-        
-    if(tryParseInteger(newInvoicePage.getInvoiceNumTxt().getText()))
+    if(!validateString(customerName) && !customerName.isEmpty()==true && !date.isEmpty())
     {
-        if(num<1)
-        {
-            JOptionPane.showMessageDialog(newInvoicePage, "Please Enter a valid positive number");
-        }
-        InvoiceHeader currentInvoiceHeader=new InvoiceHeader(num, customerName, date);
-        ArrayList<InvoiceHeader> invoiceHeaders= form.getInvoiceHeader();
-        invoiceHeaders.add(currentInvoiceHeader);
-        newInvoicePage.dispose();
-        form.getInvoiceHeaderTable().setModel(new InvoiceHeaderTableModel(form.getInvoiceHeader()));
-        form.getHeaderTableModel().fireTableDataChanged();
+        InvoiceHeader invoiceHeader=new InvoiceHeader(num,customerName,date);
+    newInvoicePage.dispose();
+    form.getInvoiceHeader().add(invoiceHeader);
+    
+    InvoiceHeaderTableModel headerTableModel=new InvoiceHeaderTableModel(form.getInvoiceHeader());
+    form.getInvoiceHeaderTable().setModel(headerTableModel);
+    
     }
     else
     {
-        newInvoicePage.getInvoiceNumTxt().setText("");
-        newInvoicePage.getCustomerNameTxt().setText("");
-        newInvoicePage.getDateTxt().setText("");
-        
+    JOptionPane.showMessageDialog(newInvoicePage, "Please Enter a customer name and date",
+           "Missing or invalid data!!", JOptionPane.ERROR_MESSAGE);
     }
-    
-        
-    
 }
+
 
 public boolean tryParseInteger(String num)
 {
@@ -263,7 +266,56 @@ public boolean tryParseInteger(String num)
 }
 
 
+public void deleteInvoiceHeader()
+{
+    //1. get selected invoice header
+    //2. delete it from array list
+    //3. refresh invoiceHeaderTableModel
+    int selected=form.getInvoiceHeaderTable().getSelectedRow();
+    if(selected==-1)
+    {
+         JOptionPane.showMessageDialog(form, "No rows selected",
+           "rows selected!!", JOptionPane.ERROR_MESSAGE);
+
+    }
+    else
+    {
+        //InvoiceHeader invoiceHeader=form.getInvoiceHeader().get(selected);
+        try{
+        form.getInvoiceHeader().remove(selected);
+        form.getInvoiceHeaderTable().addNotify();//reconfigure enclosing scrollpane.
+        form.getInvoiceHeaderTableModel().fireTableDataChanged();
+        
+        form.getInvoiceNumLbl().setText("");
+        form.getInvoiceDateLbl().setText("");
+        form.getCustomerNameLbl().setText("");
+        form.getInvoiceTotalLbl().setText("");
+        InvoiceItemTableModel itemTableModel=new InvoiceItemTableModel(null);
+        form.setInvoiceItemTableModel(itemTableModel);
+        form.getInvoiceItemTable().setModel(itemTableModel);
+        form.getInvoiceItemTable().removeAll();
+        form.getInvoiceItemTable().addNotify();
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+             JOptionPane.showMessageDialog(form, "No rows selected, please select a row",
+           "rows selected!!", JOptionPane.ERROR_MESSAGE);
+
+        }
+        
+    }
+}
+
+public boolean validateString(String str)//validate string does not have special characters
+
+{
+    boolean result=false;
+    Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
+    Matcher matcher = pattern.matcher(str);
+    result=matcher.find();
    
+    return result;
+}
 
 }
 

@@ -53,6 +53,8 @@ public class NewInvoicePage extends javax.swing.JFrame {
 
         jLabel3.setText("Date");
 
+        invoiceNumTxt.setEnabled(false);
+
         okInvoiceHeaderBtn.setText("Ok");
 
         cancelInvoiceHeaderBtn.setText("Cancel");

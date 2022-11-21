@@ -70,5 +70,9 @@ public class InvoiceHeader {
         return total;
     }
     
+    public void deleteInvoiceHeader(InvoiceHeader invoiceHeader)
+    {
+       
+    }
     
 }

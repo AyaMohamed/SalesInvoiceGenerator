@@ -42,6 +42,7 @@ public class InvoiceForm extends javax.swing.JFrame  {
         createInvoiceBtn = new javax.swing.JButton();
         createInvoiceBtn.addActionListener(controller);
         deleteInvoiceBtn = new javax.swing.JButton();
+        deleteInvoiceBtn.addActionListener(controller);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -298,7 +299,7 @@ public class InvoiceForm extends javax.swing.JFrame  {
         this.invoiceHeader=invoiceHeader;
     }
     
-    public InvoiceHeaderTableModel getHeaderTableModel()
+    public InvoiceHeaderTableModel getInvoiceHeaderTableModel()
     {
         if(headerTableModel==null)
         {
@@ -342,6 +343,11 @@ public class InvoiceForm extends javax.swing.JFrame  {
 
     public JTable getInvoiceItemTable() {
         return itemTable;
+    }
+    
+    public void setInvoiceItemTable(JTable itemTable)
+    {
+        this.itemTable=itemTable;
     }
 
     

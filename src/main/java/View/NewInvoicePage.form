@@ -91,6 +91,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="invoiceNumTxt">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="customerNameTxt">
     </Component>
