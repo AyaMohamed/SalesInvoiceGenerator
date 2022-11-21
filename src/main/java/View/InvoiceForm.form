@@ -29,6 +29,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Invoices Page"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -58,7 +59,7 @@
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="deleteInvoiceBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
-                      <Component id="createItemBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="createInvoiceItemBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                       <Component id="deleteItemBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -147,7 +148,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="deleteInvoiceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="createInvoiceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="createItemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="createInvoiceItemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="deleteItemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -191,6 +192,7 @@
     <Component class="javax.swing.JButton" name="createInvoiceBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="New Invoice"/>
+        <Property name="actionCommand" type="java.lang.String" value="New Invoice Header"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="New Invoice Header"/>
@@ -303,10 +305,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="createItemBtn">
+    <Component class="javax.swing.JButton" name="createInvoiceItemBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="New Item"/>
+        <Property name="actionCommand" type="java.lang.String" value="New Invoice Item"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="createInvoiceItemBtn.addActionListener(controller);&#xd;&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="deleteItemBtn">
       <Properties>

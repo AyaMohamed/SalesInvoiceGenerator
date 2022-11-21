@@ -8,41 +8,37 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
  * @author Aya.Mohamed
  */
-public class InvoiceHeaderTableModel extends AbstractTableModel{
-    
-    
-    String [] columns={"No.", "Date", "Customer", "Total"};
+public class InvoiceHeaderTableModel extends AbstractTableModel {
+
+
+    String[] columns = {"No.", "Date", "Customer", "Total"};
     private ArrayList<InvoiceHeader> invoiceHeader;
-    
-    public InvoiceHeaderTableModel(ArrayList<InvoiceHeader> invoiceHeader)
-    {
-        this.invoiceHeader=invoiceHeader;
+
+    public InvoiceHeaderTableModel(ArrayList<InvoiceHeader> invoiceHeader) {
+        this.invoiceHeader = invoiceHeader;
     }
-    
+
     @Override
-    public int getRowCount()
-    {
+    public int getRowCount() {
         return invoiceHeader.size();
     }
-    
+
     @Override
-    public int getColumnCount()
-    {
+    public int getColumnCount() {
         return columns.length;
     }
+
     @Override
     public String getColumnName(int column) {
         return columns[column];
     }
+
     @Override
-    public Object getValueAt(int row, int col)
-    {
-        InvoiceHeader header=invoiceHeader.get(row); //1,20-11-2020,Ali
-        switch(col)
-        {
+    public Object getValueAt(int row, int col) {
+        InvoiceHeader header = invoiceHeader.get(row); //1,20-11-2020,Ali
+        switch (col) {
             case 0:
                 return header.getNum();
             case 1:
@@ -54,6 +50,6 @@ public class InvoiceHeaderTableModel extends AbstractTableModel{
             default:
                 return "";
         }
-        
+
     }
 }

@@ -5,7 +5,6 @@
 package Model;
 
 /**
- *
  * @author Aya.Mohamed
  */
 public class InvoiceItem {
@@ -49,18 +48,17 @@ public class InvoiceItem {
     public InvoiceHeader getInvoiceHeader() {
         return invoiceHeader;
     }
-    
-    
+
+
     @Override
     public String toString() {
         return "InvoiceItem{" + "itemName=" + itemName + ", price=" + price + ", count=" + count + '}';
     }
 
-    
-    public double getTotal()
-    {
+
+    public double getTotal() {
         double total;
-        total=this.getCount()*this.getPrice();
+        total = this.getCount() * this.getPrice();
         return total;
     }
 }

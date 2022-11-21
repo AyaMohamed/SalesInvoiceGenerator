@@ -7,11 +7,10 @@ package Model;
 import java.util.ArrayList;
 
 /**
- *
  * @author Aya.Mohamed
  */
 public class InvoiceHeader {
-    
+
     private int num;
     private String customerName;
     private String date;
@@ -48,9 +47,8 @@ public class InvoiceHeader {
     }
 
     public ArrayList<InvoiceItem> getInvoiceItem() {
-        if(invoiceItem == null)
-        {
-            invoiceItem=new ArrayList();
+        if (invoiceItem == null) {
+            invoiceItem = new ArrayList();
         }
         return invoiceItem;
     }
@@ -60,19 +58,13 @@ public class InvoiceHeader {
         return "InvoiceHeader{" + "num=" + num + ", customerName=" + customerName + ", date=" + date + ", invoiceItem=" + invoiceItem + '}';
     }
 
-    public double getTotal()
-    {
-        double total=0.0;
-        for(InvoiceItem item : getInvoiceItem())
-        {
-            total+=item.getTotal();
+    public double getTotal() {
+        double total = 0.0;
+        for (InvoiceItem item : getInvoiceItem()) {
+            total += item.getTotal();
         }
         return total;
     }
-    
-    public void deleteInvoiceHeader(InvoiceHeader invoiceHeader)
-    {
-       
-    }
-    
+
+
 }
