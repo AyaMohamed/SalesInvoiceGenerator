@@ -1,4 +1,5 @@
 Model\InvoiceHeaderTableModel.class
+Utilities\HelperClass.class
 Model\InvoiceItemTableModel.class
 View\NewInvoiceItemPage.class
 View\InvoiceForm.class
