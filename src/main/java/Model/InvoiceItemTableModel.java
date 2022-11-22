@@ -21,6 +21,11 @@ public class InvoiceItemTableModel extends AbstractTableModel {
     {
         this.invoiceItems=invoiceItems;
     }
+
+    public ArrayList<InvoiceItem> getInvoiceItems() {
+        return invoiceItems;
+    }
+    
     
     @Override
     public int getRowCount()

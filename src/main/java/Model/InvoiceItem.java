@@ -61,4 +61,8 @@ public class InvoiceItem {
         total = this.getCount() * this.getPrice();
         return total;
     }
+    
+    public String convertToCsv() {
+        return invoiceHeader.getNum() + "," + this.getItemName()+ "," + this.getPrice()+ ","+ this.getCount() + "\n";
+    }
 }

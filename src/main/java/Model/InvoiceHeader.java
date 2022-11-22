@@ -66,5 +66,8 @@ public class InvoiceHeader {
         return total;
     }
 
+    public String convertToCsv() {
+        return this.getNum() + "," + this.getDate() + "," + this.getCustomerName() + "\n";
+    }
 
 }

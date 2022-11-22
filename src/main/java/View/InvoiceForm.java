@@ -56,6 +56,7 @@ public class InvoiceForm extends javax.swing.JFrame {
         createInvoiceItemBtn = new javax.swing.JButton();
         createInvoiceItemBtn.addActionListener(controller);
         deleteItemBtn = new javax.swing.JButton();
+        deleteItemBtn.addActionListener(controller);
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadFileMenuItem = new javax.swing.JMenuItem();
