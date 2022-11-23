@@ -8,6 +8,7 @@ import Model.InvoiceHeader;
 import Model.InvoiceHeaderTableModel;
 import Model.InvoiceItem;
 import Model.InvoiceItemTableModel;
+import Utilities.HelperClass;
 import View.InvoiceForm;
 import View.NewInvoiceHeaderPage;
 import View.NewInvoiceItemPage;
@@ -42,9 +43,11 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
     private static NewInvoiceHeaderPage newInvoiceHeaderPage;
     private static NewInvoiceItemPage newInvoiceItemPage;
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private static HelperClass helperClass;
 
     public InvoiceActionListener(InvoiceForm form) {
         this.form = form;
+        helperClass=new HelperClass();
     }
 
     @Override
@@ -281,7 +284,7 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
             String dateString = simpleDateFormat.format(date);
             //SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
             //System.out.println( sdf.format(newInvoiceHeaderPage.getjDateChooser1().getDate()).toString());
-            if (!validateString(customerName) && !customerName.isEmpty() == true && !date.toString().isEmpty()) {
+            if (!helperClass.validateString(customerName) && !customerName.isEmpty() == true && !date.toString().isEmpty()) {
                 InvoiceHeader invoiceHeader = new InvoiceHeader(num, customerName, dateString);
                 newInvoiceHeaderPage.dispose();
                 form.getInvoiceHeader().add(invoiceHeader);
@@ -387,7 +390,7 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
         String countString = newInvoiceItemPage.getCountTxt().getText();
         int selected = form.getInvoiceHeaderTable().getSelectedRow();
         if (!itemName.isEmpty() && !priceString.isEmpty() && !countString.isEmpty()) {
-            if (!validateString(itemName) && tryParseInteger(countString) && tryParseDouble(priceString)) {
+            if (!helperClass.validateString(itemName) && helperClass.tryParseInteger(countString) && helperClass.tryParseDouble(priceString)) {
                 double price = Double.parseDouble(priceString);
                 int count = Integer.parseInt(countString);
 
@@ -432,45 +435,10 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
         }
     }
 
-    public boolean validateString(String str)//validate string has special characters (false means string is valid)
-    {
-        boolean result = false;
-        Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
-        Matcher matcher = pattern.matcher(str);
-        result = matcher.find();
+    
 
-        return result;
-    }
+    
 
-    public boolean tryParseInteger(String num) {
-        boolean result;
-
-        try {
-            int integerNumber = Integer.parseInt(num);
-            result = true;
-        } catch (NumberFormatException ex) {
-            /*JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid positive number",
-                    "Invalid Number!!", JOptionPane.ERROR_MESSAGE);*/
-            result = false;
-
-        }
-        return result;
-    }
-
-    public boolean tryParseDouble(String num) {
-        boolean result;
-
-        try {
-            double doubleNumber = Double.parseDouble(num);
-            result = true;
-        } catch (NumberFormatException ex) {
-            /*JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid positive number",
-                    "Invalid Number!!", JOptionPane.ERROR_MESSAGE);
-             */
-            result = false;
-
-        }
-        return result;
-    }
+    
 
 }

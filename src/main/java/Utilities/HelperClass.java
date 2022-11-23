@@ -4,32 +4,54 @@
  */
 package Utilities;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Aya.Mohamed
  */
 public class HelperClass {
-    
-    public boolean tryParseInteger(String num)
-{
-    boolean result;
-    
-    try
-    {
-        int integerNumber=Integer.parseInt(num);
-        result=true;
-    }
-    catch(NumberFormatException ex)
-    {
-        /*JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid positive number",
+
+    public boolean tryParseInteger(String num) {
+        boolean result;
+
+        try {
+            int integerNumber = Integer.parseInt(num);
+            result = true;
+        } catch (NumberFormatException ex) {
+            /*JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid positive number",
            "Invalid Number!!", JOptionPane.ERROR_MESSAGE);*/
-        result=false;
-   
+            result = false;
+
+        }
+        return result;
     }
-    return result;
-}
+
+    public boolean tryParseDouble(String num) {
+        boolean result;
+
+        try {
+            double doubleNumber = Double.parseDouble(num);
+            result = true;
+        } catch (NumberFormatException ex) {
+            /*JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid positive number",
+                    "Invalid Number!!", JOptionPane.ERROR_MESSAGE);
+             */
+            result = false;
+
+        }
+        return result;
+    }
     
-    
-   
-    
+    public boolean validateString(String str)//validate string has special characters (false means string is valid)
+    {
+        boolean result = false;
+        Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
+        Matcher matcher = pattern.matcher(str);
+        result = matcher.find();
+
+        return result;
+    }
+
 }
