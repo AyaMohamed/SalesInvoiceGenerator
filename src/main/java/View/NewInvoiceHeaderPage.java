@@ -6,6 +6,7 @@ package View;
 
 import Controller.InvoiceActionListener;
 import com.toedter.calendar.JDateChooser;
+//import com.toedter.calendar.JDateChooser;
 
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
@@ -34,11 +35,7 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDatePickerUtil1 = new org.jdatepicker.util.JDatePickerUtil();
-        jDatePickerUtil2 = new org.jdatepicker.util.JDatePickerUtil();
-        jDatePickerUtil3 = new org.jdatepicker.util.JDatePickerUtil();
-        jDatePickerUtil4 = new org.jdatepicker.util.JDatePickerUtil();
-        jDatePickerUtil5 = new org.jdatepicker.util.JDatePickerUtil();
+        
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -128,11 +125,6 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
     private javax.swing.JTextField customerNameTxt;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JTextField invoiceNumTxt;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil2;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil3;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil4;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -163,6 +155,6 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
     public void setDateChooser(JDateChooser dateChooser) {
         this.dateChooser = dateChooser;
     }
-
+    
 
 }
