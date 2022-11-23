@@ -48,6 +48,7 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
         okInvoiceHeaderBtn.addActionListener(controller);
 
         cancelInvoiceHeaderBtn = new javax.swing.JButton();
+        cancelInvoiceHeaderBtn.addActionListener(controller);
         dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -65,6 +66,7 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
         okInvoiceHeaderBtn.setActionCommand("Ok Invoice Header");
 
         cancelInvoiceHeaderBtn.setText("Cancel");
+        cancelInvoiceHeaderBtn.setActionCommand("Cancel Invoice Header");
 
         dateChooser.setDateFormatString("dd-MM-yyyy");
 

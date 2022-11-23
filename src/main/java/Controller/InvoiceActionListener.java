@@ -22,6 +22,8 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -94,7 +96,14 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
                 System.out.println(e.getActionCommand());
                 okInvoiceItem();
                 break;
+                
+            case "Cancel Invoice Header":
+                cancelInvoiceHeader();
+                break;
 
+            case "Cancel Invoice Item":
+                cancelInvoiceItem();
+                break;
         }
 
     }
@@ -105,6 +114,7 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
             List<String> invoiceHeaderList = null; //the list that will hold invoice header row in the excel sheet
             List<String> invoiceItemList = null; //the list that will hold invoice line row in the excel sheet
             JFileChooser fileChooser = new JFileChooser();
+            
 
             if (invoiceHeaderPath == "" && invoiceItemPath == "")//if file path is not sent in the main function
             {
@@ -435,7 +445,15 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
         }
     }
 
+    public void cancelInvoiceHeader()
+    {
+        newInvoiceHeaderPage.dispose();
+    }
     
+    public void cancelInvoiceItem()
+    {
+        newInvoiceItemPage.dispose();
+    }
 
     
 

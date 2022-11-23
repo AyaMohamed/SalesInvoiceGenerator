@@ -127,7 +127,11 @@
     <Component class="javax.swing.JButton" name="invoiceItemCancelBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="actionCommand" type="java.lang.String" value="Cancel Invoice Item"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="invoiceItemCancelBtn.addActionListener(controller);&#xd;&#xa;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -125,7 +125,11 @@
     <Component class="javax.swing.JButton" name="cancelInvoiceHeaderBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="actionCommand" type="java.lang.String" value="Cancel Invoice Header"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="cancelInvoiceHeaderBtn.addActionListener(controller);&#xd;&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
       <Properties>
