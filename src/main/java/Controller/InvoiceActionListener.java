@@ -35,6 +35,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * @author Aya.Mohamed
@@ -49,7 +51,7 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
 
     public InvoiceActionListener(InvoiceForm form) {
         this.form = form;
-        helperClass=new HelperClass();
+        helperClass = new HelperClass();
     }
 
     @Override
@@ -96,7 +98,7 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
                 System.out.println(e.getActionCommand());
                 okInvoiceItem();
                 break;
-                
+
             case "Cancel Invoice Header":
                 cancelInvoiceHeader();
                 break;
@@ -114,7 +116,6 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
             List<String> invoiceHeaderList = null; //the list that will hold invoice header row in the excel sheet
             List<String> invoiceItemList = null; //the list that will hold invoice line row in the excel sheet
             JFileChooser fileChooser = new JFileChooser();
-            
 
             if (invoiceHeaderPath == "" && invoiceItemPath == "")//if file path is not sent in the main function
             {
@@ -206,15 +207,14 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
                     allItems += temp2;
                 }
             }
-
             try {
                 JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Comma Separated Files", "csv"));
                 fileChooser.setDialogTitle("Select where to save the header file");
                 int result = fileChooser.showSaveDialog(form);
-
                 if (result == JFileChooser.APPROVE_OPTION) {
-
                     File invoiceHeaderFile = fileChooser.getSelectedFile();
+
                     FileWriter headerFileWriter = new FileWriter(invoiceHeaderFile);
                     headerFileWriter.write(allHeaders);
                     headerFileWriter.flush();
@@ -445,18 +445,12 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
         }
     }
 
-    public void cancelInvoiceHeader()
-    {
+    public void cancelInvoiceHeader() {
         newInvoiceHeaderPage.dispose();
     }
-    
-    public void cancelInvoiceItem()
-    {
+
+    public void cancelInvoiceItem() {
         newInvoiceItemPage.dispose();
     }
-
-    
-
-    
 
 }
