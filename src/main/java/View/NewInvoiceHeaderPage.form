@@ -45,7 +45,7 @@
                   <Component id="okInvoiceHeaderBtn" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="invoiceNumTxt" pref="183" max="32767" attributes="0"/>
@@ -53,7 +53,7 @@
                       </Group>
                       <Component id="cancelInvoiceHeaderBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="dateChooser" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="dateText" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="95" max="32767" attributes="0"/>
           </Group>
@@ -72,12 +72,12 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="customerNameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dateText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="okInvoiceHeaderBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelInvoiceHeaderBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,10 +131,7 @@
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="cancelInvoiceHeaderBtn.addActionListener(controller);&#xd;&#xa;"/>
       </AuxValues>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="dateText">
     </Component>
   </SubComponents>
 </Form>

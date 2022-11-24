@@ -5,9 +5,6 @@
 package View;
 
 import Controller.InvoiceActionListener;
-import com.toedter.calendar.JDateChooser;
-//import com.toedter.calendar.JDateChooser;
-
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
@@ -35,7 +32,6 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,7 +42,7 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
 
         cancelInvoiceHeaderBtn = new javax.swing.JButton();
         cancelInvoiceHeaderBtn.addActionListener(controller);
-        dateChooser = new com.toedter.calendar.JDateChooser();
+        dateText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Invoice Header Page");
@@ -65,8 +61,6 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
         cancelInvoiceHeaderBtn.setText("Cancel");
         cancelInvoiceHeaderBtn.setActionCommand("Cancel Invoice Header");
 
-        dateChooser.setDateFormatString("dd-MM-yyyy");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,13 +73,13 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(okInvoiceHeaderBtn))
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(invoiceNumTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                             .addComponent(customerNameTxt))
                         .addComponent(cancelInvoiceHeaderBtn))
-                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateText))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,11 +93,11 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(customerNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okInvoiceHeaderBtn)
                     .addComponent(cancelInvoiceHeaderBtn))
@@ -123,7 +117,7 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelInvoiceHeaderBtn;
     private javax.swing.JTextField customerNameTxt;
-    private com.toedter.calendar.JDateChooser dateChooser;
+    private javax.swing.JTextField dateText;
     private javax.swing.JTextField invoiceNumTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -148,13 +142,11 @@ public class NewInvoiceHeaderPage extends javax.swing.JFrame {
         this.invoiceNumTxt = invoiceNumTxt;
     }
 
-    public JDateChooser getDateChooser() {
-        return dateChooser;
+    public JTextField getDateText() {
+        return dateText;
     }
 
-    public void setDateChooser(JDateChooser dateChooser) {
-        this.dateChooser = dateChooser;
+    public void setDateText(JTextField dateText) {
+        this.dateText = dateText;
     }
-    
-
 }

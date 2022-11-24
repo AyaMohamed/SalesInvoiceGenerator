@@ -287,31 +287,37 @@ public class InvoiceActionListener implements ActionListener, ListSelectionListe
         //3. close the form
         //4. add arraylist into invoiceHeaderTableModel
         //5. invoiceHeaderTableModel.fireTableDateChanged();
-        try {
+
             int num = Integer.parseInt(newInvoiceHeaderPage.getInvoiceNumTxt().getText());
             String customerName = newInvoiceHeaderPage.getCustomerNameTxt().getText();
-            Date date = newInvoiceHeaderPage.getDateChooser().getDate();
-            String dateString = simpleDateFormat.format(date);
+            //Date date = newInvoiceHeaderPage.getDateChooser().getDate();
+            //String dateString = simpleDateFormat.format(date);
             //SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+            String date=newInvoiceHeaderPage.getDateText().getText();
             //System.out.println( sdf.format(newInvoiceHeaderPage.getjDateChooser1().getDate()).toString());
-            if (!helperClass.validateString(customerName) && !customerName.isEmpty() == true && !date.toString().isEmpty()) {
-                InvoiceHeader invoiceHeader = new InvoiceHeader(num, customerName, dateString);
-                newInvoiceHeaderPage.dispose();
-                form.getInvoiceHeader().add(invoiceHeader);
+            if (!helperClass.validateString(customerName) && !customerName.isEmpty() == true && !date.isEmpty()) {
+                if(helperClass.tryParseStringToDate(date))
+                {
+                    InvoiceHeader invoiceHeader = new InvoiceHeader(num, customerName, date);
+                    newInvoiceHeaderPage.dispose();
+                    form.getInvoiceHeader().add(invoiceHeader);
 
-                InvoiceHeaderTableModel headerTableModel = new InvoiceHeaderTableModel(form.getInvoiceHeader());
-                form.getInvoiceHeaderTable().setModel(headerTableModel);
+                    InvoiceHeaderTableModel headerTableModel = new InvoiceHeaderTableModel(form.getInvoiceHeader());
+                    form.getInvoiceHeaderTable().setModel(headerTableModel);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid date format (dd-MM-yyyy)",
+                            "Invalid date format", JOptionPane.ERROR_MESSAGE);
+                }
+
 
             } else {
-                JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a customer name and date",
+                JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a valid customer name and date",
                         "Missing or invalid data!!", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(newInvoiceHeaderPage, "Please Enter a date in a format dd-MM-yyyy",
-                    "Missing or invalid date!!", JOptionPane.ERROR_MESSAGE);
-
         }
-    }
+
 
     public void deleteInvoiceHeader() {
         //1. get selected invoice header
